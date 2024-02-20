@@ -4,12 +4,30 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#3d52b6",
-        secondary: "#b69f3d",
+        primary: "#16247f",
+        secondary: "#ccd435",
+        neutral: "#253694",
+        ["primary-dark"]: "#0b1240",
+        ["primary-light"]: "#1f32ad",
       },
     },
     fontFamily: {
-      sans: ["Roboto", "Arial", "sans-serif"],
+      kanit: ["var(--font-kanit)"],
+      rowdies: ["var(--font-rowdies)"],
+      inter: ["var(--font-inter)"],
+    },
+    fontSize: {
+      s: "12px",
+      m: "14px",
+      l: "16px",
+      xl: "20px",
+      xxl: "24px",
+    },
+    dropShadow: {
+      glow: [
+        "0 0px 20px rgba(255,255, 255, 0.35)",
+        "0 0px 65px rgba(255, 255,255, 0.2)",
+      ],
     },
   },
   plugins: [],
