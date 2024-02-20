@@ -5,11 +5,14 @@ import {
   useSelector,
   useStore,
 } from "react-redux";
+import genresSlice from "./genres";
 
 // store creator
 export const createStore = () => {
   return configureStore({
-    reducer: {},
+    reducer: {
+      genresSlice,
+    },
   });
 };
 
