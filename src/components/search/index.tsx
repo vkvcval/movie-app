@@ -35,7 +35,7 @@ const SearchMovies = () => {
       } else {
         params.delete('query')
       }
-      replace(`search?${params.toString()}`)
+      replace(`/search?${params.toString()}`)
     }
   }
 
@@ -58,7 +58,7 @@ const SearchMovies = () => {
     setShowFilters(false)
     const params = new URLSearchParams(searchParams)
     params.set('genre', `${genre.id}`)
-    replace(`search?${params.toString()}`)
+    replace(`/search?${params.toString()}`)
   }
 
   return (
