@@ -8,18 +8,24 @@ import { getGenres } from '@/services/tmdb'
 import { Genre } from 'tmdb-ts'
 import useIsClickedOutside from '@/lib/helpers/useIsClickOutside'
 
-const SearchMovies = () => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [showFilters, setShowFilters] = useState(false)
+const SearchInput = () => {
+  const { replace } = useRouter()
+  const dispatch = useAppDispatch()
   const genres = useGenres()
   const searchParams = useSearchParams()
 
-  const { replace } = useRouter()
-
-  const dispatch = useAppDispatch()
+  const [searchTerm, setSearchTerm] = useState('')
+  const [showFilters, setShowFilters] = useState(false)
 
   const divRef = useRef<HTMLDivElement>(null)
   useIsClickedOutside(divRef, () => setShowFilters(false))
+
+  useEffect(() => {
+    if (genres.length) {
+      return
+    }
+    setGenresState()
+  }, [])
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)
@@ -32,6 +38,7 @@ const SearchMovies = () => {
       const params = new URLSearchParams(searchParams)
       if (searchTerm) {
         params.set('query', searchTerm)
+        params.delete('genre')
       } else {
         params.delete('query')
       }
@@ -46,17 +53,11 @@ const SearchMovies = () => {
     }
   }
 
-  useEffect(() => {
-    if (genres.length) {
-      return
-    }
-    setGenresState()
-  }, [])
-
   const handleFilterClick = (genre: Genre) => {
     setSearchTerm('')
     setShowFilters(false)
     const params = new URLSearchParams(searchParams)
+    params.delete('query')
     params.set('genre', `${genre.id}`)
     replace(`/search?${params.toString()}`)
   }
@@ -94,4 +95,4 @@ const SearchMovies = () => {
   )
 }
 
-export default SearchMovies
+export default SearchInput

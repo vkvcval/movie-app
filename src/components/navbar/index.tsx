@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Logo from '../logo'
-import SearchMovies from '@/components/search'
+import SearchInput from '@/components/searchInput'
 import { useEffect } from 'react'
 import { useAppDispatch } from '@/lib/redux/store'
 import { setFavorites } from '@/lib/redux/favorites'
@@ -35,7 +35,7 @@ export default function NavBar() {
             </div>
           </Link>
         </div>
-        <SearchMovies />
+        <SearchInput />
       </div>
     </nav>
   )
