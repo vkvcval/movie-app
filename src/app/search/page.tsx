@@ -3,7 +3,7 @@ import { searchMovie, searchMoviesByGenre } from '@/services/tmdb'
 import { Movie } from 'tmdb-ts'
 
 export default async function SearchPage({
-  searchParams,
+  searchParams
 }: {
   searchParams?: {
     query?: string
@@ -29,30 +29,28 @@ export default async function SearchPage({
 
   if (list.length === 0) {
     return (
-      <main className="bg-black">
-        <div className="p-8">
-          <h3 className="mb-16 mt-10 text-center font-kanit text-xxl text-white">
-            {searchTerm ? `No results found for results for '${searchTerm}'` : 'No results found.'}
-          </h3>
-        </div>
-      </main>
+      <div className="p-8">
+        <h3 className="mb-16 mt-10 text-center font-kanit text-xxl text-white">
+          {searchTerm
+            ? `No results found for results for '${searchTerm}'`
+            : 'No results found.'}
+        </h3>
+      </div>
     )
   }
 
   return (
-    <main className="bg-black">
-      <div className="p-8">
-        <h3 className="mb-16 mt-10 text-center font-kanit text-xxl text-white">
-          {searchTerm ? `Search results for '${searchTerm}'` : 'Search results'}
-        </h3>
-        <ul className="flex flex-col gap-6 text-white">
-          {list.map((item) => (
-            <li key={item.id}>
-              <SearchItem movie={item} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </main>
+    <div className="p-8">
+      <h3 className="mb-16 mt-10 text-center font-kanit text-xxl text-white">
+        {searchTerm ? `Search results for '${searchTerm}'` : 'Search results'}
+      </h3>
+      <ul className="flex flex-col gap-6 text-white">
+        {list.map((item) => (
+          <li key={item.id}>
+            <SearchItem movie={item} />
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }

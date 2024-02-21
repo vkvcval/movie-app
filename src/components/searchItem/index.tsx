@@ -7,7 +7,9 @@ import { Movie } from 'tmdb-ts'
 
 export default function SearchItem({ movie }: { movie: Movie }) {
   return (
-    <div className={`${styles.wrapper} rounded p-2 transition duration-200 ease-in-out hover:bg-primary-dark`}>
+    <div
+      className={`${styles.wrapper} rounded p-2 transition duration-200 ease-in-out hover:bg-primary-dark`}
+    >
       <Link href={`/movie/${movie.id}`}>
         <div className="flex items-center gap-3">
           {movie.backdrop_path ? (
@@ -19,7 +21,7 @@ export default function SearchItem({ movie }: { movie: Movie }) {
                 height={144}
                 style={{
                   width: '100%',
-                  height: 'auto',
+                  height: 'auto'
                 }}
               />
             </div>
@@ -29,7 +31,9 @@ export default function SearchItem({ movie }: { movie: Movie }) {
           <div className="p-1">
             <h4 className="mb-2 text-l font-bold">{movie.title}</h4>
             <p className="text-m">Overview: {movie.overview}</p>
-            <p className="mt-2 font-kanit text-secondary">Rating: {movie.vote_average}</p>
+            <p className="mt-2 font-kanit text-secondary">
+              Rating: {movie.vote_average}
+            </p>
           </div>
         </div>
       </Link>

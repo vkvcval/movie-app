@@ -1,7 +1,11 @@
 export default async function SearchLayout({
-  children,
+  children
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  return <main className="max-w-screen-xl m-auto">{children}</main>;
+  return (
+    <main className="m-auto max-w-screen-xl">
+      <div className="bg-black">{children}</div>
+    </main>
+  )
 }
