@@ -23,8 +23,8 @@ export default async function SearchPage({
     result = await searchMoviesByGenre([genreId])
   }
 
-  if (result) {
-    list = result.results
+  if (result?.data) {
+    list = result.data.results
   }
 
   if (list.length === 0) {

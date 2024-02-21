@@ -40,13 +40,16 @@ const SearchMovies = () => {
   }
 
   const setGenresState = async () => {
-    const genres = await getGenres()
-    if (genres) {
-      dispatch(setGenres(genres))
+    const { data, error } = await getGenres()
+    if (data) {
+      dispatch(setGenres(data))
     }
   }
 
   useEffect(() => {
+    if (genres.length) {
+      return
+    }
     setGenresState()
   }, [])
 
