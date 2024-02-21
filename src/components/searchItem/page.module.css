@@ -1,0 +1,7 @@
+.wrapper:hover {
+  background-color: #232324;
+}
+
+.wrapper:hover .movie-img {
+  width: 266;
+}
