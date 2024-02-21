@@ -1,6 +1,6 @@
 "use server";
 
-import { Configuration, PopularMovies } from "tmdb-ts";
+import { Configuration, Movie, PopularMovies, Search } from "tmdb-ts";
 import { tmdbBaseUrl, tmdbConfigurationUrl } from "@/lib/tmdb";
 import { notFound } from "next/navigation";
 import { Genres } from "tmdb-ts/dist/endpoints";
@@ -9,6 +9,7 @@ export const fetchData = async <T>(url: string): Promise<T | null> => {
   try {
     const res = await fetch(url);
     const data = await res.json();
+
     if (!data) {
       notFound();
     }
@@ -83,3 +84,15 @@ export const getGenres = async () => {
   const url = `${tmdbBaseUrl}/genre/movie/list?api_key=${process.env.TMDB_API_KEY}`;
   return fetchData<Genres>(url);
 };
+
+export const searchMovie = async (term: string) => {
+  const url = `${tmdbBaseUrl}/search/movie?query=${term}&api_key=${process.env.TMDB_API_KEY}`;
+  return fetchData<Search<Movie>>(url);
+};
+
+export const searchMoviesByGenre = async (genreIds: string[]) => {
+  const url = `${tmdbBaseUrl}/discover/movie?with_genres=${genreIds.join(',')}&api_key=${process.env.TMDB_API_KEY}`;
+  return fetchData<Search<Movie>>(url);
+};
+
+

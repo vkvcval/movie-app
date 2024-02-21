@@ -16,8 +16,16 @@ const TMDB_IMAGES = {
 
 export const getPosterPath = (imagePath: string) => {
   return tmdb.getFullImagePath(
-    TMDB_IMAGES.base_url,
+    TMDB_IMAGES.secure_base_url,
     TMDB_IMAGES.poster_sizes[4],
+    imagePath,
+  );
+};
+
+export const getBackdropPath = (imagePath: string) => {
+  return tmdb.getFullImagePath(
+    TMDB_IMAGES.secure_base_url,
+    TMDB_IMAGES.backdrop_sizes[0],
     imagePath,
   );
 };
