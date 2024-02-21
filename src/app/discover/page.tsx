@@ -3,6 +3,7 @@ import { getPopularMovies } from '@/services/tmdb'
 import Card from '@/components/card'
 import ScrollableList from '@/components/scrollableList'
 import SectionTitle from '@/components/sectionTitle'
+import Link from 'next/link'
 
 const DynamicToggleFavorite = dynamic(
   () => import('@/components/toggleFavorite'),
@@ -35,12 +36,14 @@ export default async function DiscoverPage() {
           <ScrollableList>
             {twentyMostPopular.map((movie) => (
               <div key={movie.id} className="relative min-w-[200px]">
-                <Card
-                  key={movie.id}
-                  title={movie.original_title}
-                  image={movie.poster_path}
-                  popularity={movie.popularity}
-                />
+                <Link href={`/movie/${movie.id}`}>
+                  <Card
+                    key={movie.id}
+                    title={movie.original_title}
+                    image={movie.poster_path}
+                    popularity={movie.popularity}
+                  />
+                </Link>
                 <DynamicToggleFavorite movieId={movie.id} />
               </div>
             ))}

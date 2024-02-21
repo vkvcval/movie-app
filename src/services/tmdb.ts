@@ -5,10 +5,14 @@ import {
   ErrorResponse,
   Genre,
   Movie,
+  MoviesPlayingNow,
   PopularMovies,
   ProductionCompany,
   ProductionCountry,
-  Search
+  Recommendations,
+  Search,
+  TopRatedMovies,
+  UpcomingMovies
 } from 'tmdb-ts'
 import { tmdbBaseUrl, tmdbConfigurationUrl } from '@/lib/tmdb'
 import { Genres } from 'tmdb-ts/dist/endpoints'
@@ -53,17 +57,17 @@ export const getPopularMovies = async (page: number = 1) => {
 
 export const getNowPlaying = async () => {
   const url = `${tmdbBaseUrl}/movie/now_playing?api_key=${process.env.TMDB_API_KEY}`
-  return fetchData(url)
+  return fetchData<MoviesPlayingNow>(url)
 }
 
 export const getTopRated = async () => {
   const url = `${tmdbBaseUrl}/movie/top_rated?api_key=${process.env.TMDB_API_KEY}`
-  return fetchData(url)
+  return fetchData<TopRatedMovies>(url)
 }
 
 export const getUpcoming = async () => {
   const url = `${tmdbBaseUrl}/movie/upcoming?api_key=${process.env.TMDB_API_KEY}`
-  return fetchData(url)
+  return fetchData<UpcomingMovies>(url)
 }
 
 export const getLatestMovies = async () => {
@@ -73,7 +77,7 @@ export const getLatestMovies = async () => {
 
 export const getMovieRecommendations = async (movieId: string | number) => {
   const url = `${tmdbBaseUrl}/movie/${movieId}/recommendations?api_key=${process.env.TMDB_API_KEY}`
-  return fetchData(url)
+  return fetchData<Recommendations>(url)
 }
 
 export type MovieDetails = Movie & {
