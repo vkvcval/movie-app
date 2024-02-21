@@ -8,6 +8,8 @@ To start project run:
 npm install
 ```
 
+Add env file (you can use the one from example).
+
 To run the development server:
 
 ```bash
