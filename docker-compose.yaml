@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  movie-app:
+    container_name: movie-app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+
+    # Set environment variables directly in the docker-compose file
+    environment:
+      TMDB_API_KEY: c60fe262047f94c79a6a56a444722813
+
+    # Set environment variables based on the .env file
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    restart: always
+    ports:
+      - 3000:3000
