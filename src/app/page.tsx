@@ -10,9 +10,9 @@ export default async function Home() {
   const { data: upcoming } = await getUpcoming()
   const { data: topRated } = await getTopRated()
 
-  const fiveNowPlaying = nowPlaying.results?.slice(0, 5) || []
-  const fiveUpcoming = upcoming.results?.slice(0, 5) || []
-  const fiveTopRated = topRated.results?.slice(0, 5) || []
+  const fiveNowPlaying = nowPlaying?.results?.slice(0, 5) || []
+  const fiveUpcoming = upcoming?.results?.slice(0, 5) || []
+  const fiveTopRated = topRated?.results?.slice(0, 5) || []
 
   return (
     <main>
